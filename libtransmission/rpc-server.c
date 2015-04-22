@@ -40,7 +40,7 @@
  * http://en.wikipedia.org/wiki/Cross-site_request_forgery
  * http://shiflett.org/articles/cross-site-request-forgeries
  * http://www.webappsec.org/lists/websecurity/archive/2008-04/msg00037.html */
-#define REQUIRE_SESSION_ID
+// #define REQUIRE_SESSION_ID
 
 #define MY_NAME "RPC Server"
 #define MY_REALM "Transmission"
