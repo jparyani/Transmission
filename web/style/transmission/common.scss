@@ -1,10 +1,10 @@
 @mixin verticalGradient($topColor, $bottomColor) {
 	background-color: mix($topColor, $bottomColor);
-	background-image: -webkit-gradient(linear, left top, left bottom, from($topColor), to($bottomColor)); 
-	background-image: -webkit-linear-gradient(top, $topColor, $bottomColor); 
-	background-image:    -moz-linear-gradient(top, $topColor, $bottomColor); 
-	background-image:     -ms-linear-gradient(top, $topColor, $bottomColor); 
-	background-image:      -o-linear-gradient(top, $topColor, $bottomColor); 
+	background-image: -webkit-gradient(linear, left top, left bottom, from($topColor), to($bottomColor));
+	background-image: -webkit-linear-gradient(top, $topColor, $bottomColor);
+	background-image:    -moz-linear-gradient(top, $topColor, $bottomColor);
+	background-image:     -ms-linear-gradient(top, $topColor, $bottomColor);
+	background-image:      -o-linear-gradient(top, $topColor, $bottomColor);
 	background-image:         linear-gradient(top, $topColor, $bottomColor);
 }
 
@@ -173,6 +173,14 @@ div#toolbar
 	> div#toolbar-pause-all {
 		background-image: url('images/toolbar-pause-all.png');
 	}
+ 	> div#toolbar-download {
+    background-image: url('images/toolbar-folder.png');
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
 
 	> div#toolbar-inspector {
 		background-image: url('images/toolbar-info.png');
@@ -305,10 +313,10 @@ ul.torrent_list
 				height: 14px;
 				width: 14px;
 			}
-	
+
 			div.torrent_pause { background-position: left top; }
 			div.torrent_resume { background-position: center top; }
-	
+
 			&:active {
 				div.torrent_pause { background-position: left bottom; }
 				div.torrent_resume { background-position: center bottom; }
@@ -631,7 +639,7 @@ div#torrent_inspector
 
 	div.inspector_torrent_file_list_entry_name {
 		font-size: 1.2em;
-		color: black; 
+		color: black;
 		display: inline;
 		margin-left: 0px;
 	}

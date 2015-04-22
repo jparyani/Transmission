@@ -465,6 +465,34 @@ serve_file (struct evhttp_request  * req,
 }
 
 static void
+handle_download (struct evhttp_request * req,
+                 struct tr_rpc_server *  server)
+{
+  char * pch;
+  char * subpath;
+
+  subpath = tr_strdup (req->uri + strlen (server->url) + 10);
+  if ((pch = strchr (subpath, '?')))
+    *pch = '\0';
+
+  if (strstr (subpath, ".."))
+    {
+      send_simple_response (req, HTTP_NOTFOUND, "<p>Tsk, tsk.</p>");
+    }
+  else if (!subpath && !*subpath)
+    {
+      send_simple_response (req, HTTP_NOTFOUND, "<p>No download path.</p>");
+    }
+  else
+    {
+      char * filename = tr_strdup_printf ("/var/downloads/%s",
+                                          subpath);
+      serve_file (req, server, filename);
+      tr_free (filename);
+    }
+}
+
+static void
 handle_web_client (struct evhttp_request * req,
                    struct tr_rpc_server *  server)
 {
@@ -653,6 +681,10 @@ handle_request (struct evhttp_request * req, void * arg)
         {
           handle_upload (req, server);
         }
+      else if (!strncmp (req->uri + strlen (server->url), "downloads/", 10))
+         {
+           handle_download (req, server);
+         }
 #ifdef REQUIRE_SESSION_ID
       else if (!test_session_id (server, req))
         {
