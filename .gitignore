@@ -50,3 +50,7 @@
 /utils/transmission-show
 Makefile
 Makefile.in
+compile
+qt/config.pri
+test-driver
+third-party/miniupnp/miniupnpcstrings.h
